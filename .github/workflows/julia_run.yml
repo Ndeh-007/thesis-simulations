@@ -1,26 +1,41 @@
-name: Julia Run
+name: Run Julia Script and Store Results
 
 on:
   push:
     branches:
-      - master # or your default branch
+      - master 
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest]
-        julia-version: ["1.11"] # Or specify exact versions like "1.9.3"
-        arch: ["x64"] # Or specify "x86" if needed.
+  run_julia:
+    runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: ${{ matrix.julia-version }}
-          arch: ${{ matrix.arch }}
-      - uses: julia-actions/cache@v1 # This will cache Julia packages and artifacts
-      - name: Install dependencies
-        run: julia -e 'using Pkg; Pkg.add(url="https://oauth:glpat-L_nSf9MGmzxPG3uaPacn@gitlab.math.ubc.ca/akumah/SealSolver.jl.git"); Pkg.add("URL")'
-      - name: Run tests
-        run: julia -e 'include("main.jl"); prime_solver(), run_complete_set()'
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Julia
+      uses: julia-actions/setup-julia@latest
+      with:
+        version: '1.11'
+
+    - name: Install Dependencies
+      run: |
+        julia -e 'using Pkg; Pkg.add(url="https://oauth:glpat-L_nSf9MGmzxPG3uaPacn@gitlab.math.ubc.ca/akumah/SealSolver.jl.git"); Pkg.add("CSV")'
+
+    # - name: Create Results Directory
+    #   run: mkdir results
+
+    - name: Run Julia Script
+      run: julia -e 'include("main.jl"); prime_solver(), run_complete_set()'
+
+    - name: Archive Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: julia-results-grid_4-case-3
+        path: grid_4-case-3/
+
+    - name: Archive Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: julia-results-grid_4-case-4
+        path: grid_4-case-4/
