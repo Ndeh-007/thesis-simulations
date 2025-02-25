@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup Julia
       uses: julia-actions/setup-julia@latest
@@ -29,13 +29,13 @@ jobs:
       run: julia -e 'include("main.jl"); prime_solver(), run_complete_set()'
 
     - name: Archive Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: julia-results-grid_4-case-3
         path: grid_4-case-3/
 
     - name: Archive Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: julia-results-grid_4-case-4
         path: grid_4-case-4/
