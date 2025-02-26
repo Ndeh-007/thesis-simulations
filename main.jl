@@ -1,7 +1,4 @@
 using SealSolver
-using CSV
-using DelimitedFiles
-using HDF5
 
 
 function write_to_log(msg, ex)
@@ -55,7 +52,7 @@ function run_solver(params_path::String, results_path::String, csv_file::String)
 
         total_duration = duration + save_duration
 
-        append_to_csv((duration, save_duration, total_duration), csv_file)
+        # append_to_csv((duration, save_duration, total_duration), csv_file)
 
         println("------------------------------------------")
         println("Complete")

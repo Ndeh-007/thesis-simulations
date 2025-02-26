@@ -20,7 +20,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        julia -e 'using Pkg; Pkg.add(url="https://oauth:glpat-L_nSf9MGmzxPG3uaPacn@gitlab.math.ubc.ca/akumah/SealSolver.jl.git"); Pkg.add("CSV")'
+        julia -e 'using Pkg; Pkg.add(url="https://oauth:glpat-L_nSf9MGmzxPG3uaPacn@gitlab.math.ubc.ca/akumah/SealSolver.jl.git");'
 
     # - name: Create Results Directory
     #   run: mkdir results
