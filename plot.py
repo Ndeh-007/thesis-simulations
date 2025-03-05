@@ -25,6 +25,7 @@ def create_folder_pairs() -> dict[str, list[tuple[str, str]]]:
     ]
 
     grids = [
+        "grid_0",
         "grid_1",
         "grid_2",
         "grid_3",
@@ -74,11 +75,11 @@ if target not in keys:
     )
 if target == "all":
     for k in FOLDER_PAIRS_LIST.keys():
-        playback = PlayBack(fp=FOLDER_PAIRS_LIST[k], cns=None, grid=[3, 1], plot_data_range=-2, scaling=[1])
+        playback = PlayBack(fp=FOLDER_PAIRS_LIST[k], cns=None, grid=[4, 1], plot_data_range=-2, scaling=[1])
         playback.fig.suptitle(k)
 
 else:
-    playback = PlayBack(fp=FOLDER_PAIRS_LIST[target], cns=None, grid=[3, 1], plot_data_range=-2, scaling=[1])
+    playback = PlayBack(fp=FOLDER_PAIRS_LIST[target], cns=None, grid=[4, 1], plot_data_range=-2, scaling=[1])
     playback.fig.suptitle(target)
 
 plt.tight_layout()

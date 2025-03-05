@@ -1,4 +1,4 @@
-using SealSolver
+using SealSolver, HDF5
 
 
 function write_to_log(msg, ex)
@@ -27,7 +27,7 @@ function save_results(data::Array{Tuple{String,Array}}, folder::String)
         k, v = pair
 
         file_name = joinpath(folder, "$(k).h5")
-        h5open(file_name, "w") do fid
+        HDF5.h5open(file_name, "w") do fid
             write(fid, k, v)
         end
 
@@ -95,16 +95,17 @@ end
 # create the base simulation case folders
 
 case_keys = [
-    # "case_1",
-    # "case_2",
+    "case_1",
+    "case_2",
     "case_3",
     "case_4",
 ]
 
 grid_keys = [
-    # "grid_1",
-    # "grid_2",
-    # "grid_3",
+    "grid_0",
+    "grid_1",
+    "grid_2",
+    "grid_3",
     "grid_4",
 ]
 
